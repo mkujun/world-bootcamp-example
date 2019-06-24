@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using world_bootcamp_example.Interfaces;
 using world_bootcamp_example.Services;
 using world_bootcamp_example.world;
 
@@ -10,7 +11,9 @@ namespace world_bootcamp_example
         static void Main(string[] args)
         {
             worldContext context = new worldContext();
-            CityService cityService = new CityService(context);
+            ICity cityService = new CityService(context);
+
+            // this is example of various testing scenarios
 
             // cityService.AddCity(new City(5000, "markov grad", "markovija", 2, "PSE"));
             // cityService.UpdateCity(5001, "markov promijenjeni grad", "markovija", 5, "PSE");
