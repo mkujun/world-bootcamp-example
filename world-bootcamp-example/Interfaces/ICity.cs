@@ -9,5 +9,6 @@ namespace world_bootcamp_example.Interfaces
     {
         List<City> GetAllCities();
         void AddCity(City city);
+        void DeleteCity(int cityId);
     }
 }

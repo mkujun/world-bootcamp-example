@@ -10,6 +10,10 @@ namespace world_bootcamp_example
         {
             worldContext context = new worldContext();
             CityService cityService = new CityService(context);
+
+            // cityService.AddCity(new City(5000, "markov grad", "markovija", 2, "PSE"));
+            // cityService.UpdateCity(5001, "markov promijenjeni grad", "markovija", 5, "PSE");
+            // cityService.DeleteCity(5001);
         }
     }
 }

@@ -28,8 +28,6 @@ namespace world_bootcamp_example.world
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
-
             #region City
             modelBuilder.Entity<City>(entity =>
             {
@@ -63,10 +61,10 @@ namespace world_bootcamp_example.world
                     .HasForeignKey(d => d.CountryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("city_ibfk_1");
-
-                #endregion
             });
+            #endregion
 
+            #region Country
             modelBuilder.Entity<Country>(entity =>
             {
                 entity.HasKey(e => e.Code);
@@ -126,7 +124,9 @@ namespace world_bootcamp_example.world
                     .HasColumnType("float(10,2)")
                     .HasDefaultValueSql("0.00");
             });
+            #endregion
 
+            #region Countrylanguage
             modelBuilder.Entity<Countrylanguage>(entity =>
             {
                 entity.HasKey(e => new { e.CountryCode, e.Language });
@@ -155,6 +155,7 @@ namespace world_bootcamp_example.world
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("countryLanguage_ibfk_1");
             });
+            #endregion
         }
     }
 }

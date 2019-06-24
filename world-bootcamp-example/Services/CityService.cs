@@ -21,14 +21,54 @@ namespace world_bootcamp_example.Services
             return context.Cities.ToList();
         }
 
-        // public IEnumerable<City> GetAllCities => context.Cities;
-
         public void AddCity(City city)
         {
-            // todo : provjeri postoji li taj city u bazi
-            context.Cities.Add(city);
+            City cityToAdd = context.Cities.Find(city.Id);
 
-            context.SaveChanges();
+            if (cityToAdd == null)
+            {
+                context.Cities.Add(city);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("City with that Id doesn't exist");
+            }
         }
+
+        public void DeleteCity(int cityId)
+        {
+            City cityToDelete = context.Cities.Find(cityId);
+
+            if (cityToDelete != null)
+            {
+                context.Cities.Remove(cityToDelete);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("City with that Id doesn't exist");
+            }
+        }
+
+        public void UpdateCity(int id, string name, string district, int population, string countryCode)
+        {
+            City cityToUpdate = context.Cities.Find(id);
+
+            if (cityToUpdate != null)
+            {
+                cityToUpdate.Name = name;
+                cityToUpdate.District = district;
+                cityToUpdate.Population = population;
+                cityToUpdate.CountryCode = countryCode;
+
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("City with that Id doesn't exist");
+            }
+        }
+
     }
 }
