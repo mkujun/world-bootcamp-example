@@ -1,4 +1,6 @@
 ﻿using System;
+using world_bootcamp_example.Services;
+using world_bootcamp_example.world;
 
 namespace world_bootcamp_example
 {
@@ -6,7 +8,8 @@ namespace world_bootcamp_example
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            worldContext context = new worldContext();
+            CityService cityService = new CityService(context);
         }
     }
 }

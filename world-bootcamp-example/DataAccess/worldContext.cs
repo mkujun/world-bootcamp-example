@@ -10,14 +10,13 @@ namespace world_bootcamp_example.world
         {
         }
 
-        public worldContext(DbContextOptions<worldContext> options)
-            : base(options)
+        public worldContext(DbContextOptions<worldContext> options) : base(options)
         {
         }
 
-        public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<Countrylanguage> Countrylanguage { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Countrylanguage> Countrylanguages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,6 +30,7 @@ namespace world_bootcamp_example.world
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
+            #region City
             modelBuilder.Entity<City>(entity =>
             {
                 entity.ToTable("city", "world");
@@ -63,6 +63,8 @@ namespace world_bootcamp_example.world
                     .HasForeignKey(d => d.CountryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("city_ibfk_1");
+
+                #endregion
             });
 
             modelBuilder.Entity<Country>(entity =>
